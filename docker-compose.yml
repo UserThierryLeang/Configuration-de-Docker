@@ -1,0 +1,13 @@
+version: '3.8'  # Version de Docker Compose
+
+services:  # Définit les conteneurs à lancer
+  web:  # Nom du service (peut être changé)
+    build: .  # Construit l'image à partir du Dockerfile présent dans le dossier courant
+    container_name: react-app  # Nom explicite du conteneur
+    ports:
+      - "3000:80"  # Port externe:interne (3000 sur votre machine → 80 dans le conteneur Nginx)
+    restart: unless-stopped  # Redémarre automatiquement en cas de crash
+    volumes:
+      - /app/node_modules  # Optimise les performances
+    environment:
+      - NODE_ENV=production  # Mode production pour React
